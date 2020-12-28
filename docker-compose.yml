@@ -1,0 +1,16 @@
+version: '3'
+services:
+  app:
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    container_name: app
+    volumes:
+      - "./app:/opt/app/app"
+    ports:
+      - 8000:8000
+    environment:
+      DEBUG: "True"
+      SETTINGS_MODULE: "config.settings.local"
+    command: python manage.py runserver 0.0.0.0:8000
+    tty: true
